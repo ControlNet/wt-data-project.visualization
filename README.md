@@ -8,7 +8,7 @@ To use this visualization repo, you need create a directory like this. The `data
 the `wt-data-project.data` repo, and the `visualization` directory contains everything in this repo.
 
 ```
-wt-data-project
+wt-data-project (as working directory)
 ├─data
 │  ├─joined
 │  ├─ts
@@ -32,6 +32,18 @@ install.packages("<package name>")
  * ggsci
 
 ## Example
+
+Please use `main.R` to run functions below.
+```r
+source("visualization/utils.R")
+source("visualization/static_plot.R")
+source("visualization/time_animation.R")
+source("visualization/time_trend.R")
+
+# add everything you want
+# for example
+static.heatmap.default.ground_vehicles.win_rate()
+```
 
 There are some default functions for easy use.
 
