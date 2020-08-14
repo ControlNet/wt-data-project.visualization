@@ -91,14 +91,16 @@ static.bars <- function(nation.sample,
   # read data
   data <- read.csv(cache.file.path)
   data <- data %>%
+    mutate(rb_lower_br = rb_lower_br %>% as.factor) %>%
     filter(date == date.sample) %>%
     filter(nation == nation.sample) %>%
     filter(cls %in% class.sample)
 
   # plot
   p <- data %>% ggplot +
-    geom_bar(aes_string(x = "rb_br", y = y, fill = "cls"), stat = "identity", position = position_dodge()) +
+    geom_bar(aes_string(x = "rb_lower_br", y = y, fill = "cls"), stat = "identity", position = position_dodge()) +
     coord_flip(ylim = y.limits) +
+    scale_y_discrete(labels = data$rb_br) +
     ggtitle(paste("Bar Chart for", paste(class.sample, collapse = " and "),
                   "of", nation.sample, date.sample, sep = " ")) +
     labs(caption = "Author: ControlNet, Source: Thunderskill")
@@ -140,9 +142,11 @@ static.pie.battles <- function(date.sample,
   p
 }
 
-staitc.pie.default.battles <- function() {
+static.pie.default.battles <- function() {
+  # read the nearest date
   data <- read.csv(cache.file.path)
   date.sample <- data$date %>% unique %>% .[1]
+  # plot pie chart
   static.pie.battles(date.sample, mode = "rb",
                      colors = c(red, blue, green, gray, purple, indigo, yellow, orange, brown))
 }

@@ -1,6 +1,6 @@
 library(ggsci)
 
-cache.file.path <- "integration/cache.csv"
+cache.file.path <- "data/rb_ranks.csv"
 joined.dir.path <- "data/joined"
 ts.dir.path <- "data/ts"
 wk.dir.path <- "data/wk"
