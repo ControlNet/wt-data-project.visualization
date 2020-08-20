@@ -100,10 +100,10 @@ static.bars <- function(nation.sample,
   p <- data %>% ggplot +
     geom_bar(aes_string(x = "rb_lower_br", y = y, fill = "cls"), stat = "identity", position = position_dodge()) +
     coord_flip(ylim = y.limits) +
-    scale_y_discrete(labels = data$rb_br) +
+    scale_x_discrete(labels = data$rb_br) +
     ggtitle(paste("Bar Chart for", paste(class.sample, collapse = " and "),
                   "of", nation.sample, date.sample, sep = " ")) +
-    labs(caption = "Author: ControlNet, Source: Thunderskill")
+    labs(caption = "Author: ControlNet, Source: Thunderskill", x = "Battle Rating")
   p
 }
 

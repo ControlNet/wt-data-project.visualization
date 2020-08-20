@@ -66,7 +66,7 @@ Except the default functions, there are more functions you can use for visualiza
 
 For example, you can visualize the trend of battles counts with the code below.
 ```r
-trend.nations.battles(class.sample = "Ground_vehicles", y = "rb_battles_sum", rb_br.sample = "9.7 ~ 10.7")
+trend.nations.battles(class.sample = "Ground_vehicles", y = "rb_battles_sum")
 ```
 ![trend_nations_battles_demo](https://github.com/ControlNet/wt-data-project.visualization/blob/master/imgs/trend_nations_battles_demo.png)
 
@@ -92,7 +92,7 @@ Also, you can make gif animation with these codes below.
 animation.trend.heatmap(class.sample = "Ground_vehicles", fill = "rb_win_rate",
                         fill.limits = c(0, 100),
                         colors = c(white, black, red, yellow, green, black, black),
-                        colors.pos = c(0, 0.05, 0.4, 0.5, 0.6, 0.95, 1.0)) %>% render
+                        colors.pos = c(0, 0.05, 0.4, 0.5, 0.6, 0.95, 1.0)) %>% animation.render
 
 # if you need save as a file
 anim_save(filename = "out.gif")
