@@ -18,35 +18,41 @@ static.heatmap <- function(date.sample = data$date %>% unique %>% .[1],
     mutate(rb_lower_br = rb_lower_br %>% as.factor)
   # select two date for compare
   data.now <- data.sample %>% filter(date == date.sample)
-  data.before <- data.sample %>% filter(date == date.compare)
 
   # calculate trend
-  data.trend <- data.now %>%
-    select(nation, rb_lower_br, fill) %>%
-    merge(data.before %>% select(nation, rb_lower_br, fill),
-          by = c("nation", "rb_lower_br"), all.x = TRUE) %>%
-    mutate(trend.up = .[, 3] > .[, 4]) %>%
-    mutate(trend.down = .[, 3] < .[, 4]) %>%
-    mutate(x = match(nation, nation_order), y = match(rb_lower_br, data.now$rb_lower_br %>% unique))
-
-  data.trend.up <- data.trend %>% filter(trend.up) %>% select(x, y)
-  data.trend.down <- data.trend %>%
-    filter(trend.down) %>%
-    select(x, y)
+  if (!is.null(date.compare)) {
+    data.before <- data.sample %>% filter(date == date.compare)
+    # calculate trend
+    data.trend <- data.now %>%
+      select(nation, rb_lower_br, fill) %>%
+      merge(data.before %>% select(nation, rb_lower_br, fill),
+            by = c("nation", "rb_lower_br"), all.x = TRUE) %>%
+      mutate(trend.up = .[, 3] > .[, 4]) %>%
+      mutate(trend.down = .[, 3] < .[, 4]) %>%
+      mutate(x = match(nation, nation_order), y = match(rb_lower_br, data.now$rb_lower_br %>% unique))
+    data.trend.up <- data.trend %>% filter(trend.up) %>% select(x, y)
+    data.trend.down <- data.trend %>%
+      filter(trend.down) %>%
+      select(x, y)
+  }
 
   if (fill.log)
     fill <- paste0("log10(", fill, ")")
 
   # plot
-  data.now %>% ggplot +
+  p <- data.now %>% ggplot +
     geom_tile(aes_string(x = "nation", y = "rb_lower_br", fill = fill), color = "black") +
     scale_fill_gradientn(colors = colors, values = colors.pos, limits = fill.limits) +
     scale_y_discrete(labels = data.now$rb_br) +
     scale_x_discrete(limits = nation_order) +
     ggtitle(paste("Heatmap of", fill, "for", class.sample, date.sample, sep = " ")) +
-    labs(x = "Nation", y = "Battle Rating", caption = "Author: ControlNet, Source: Thunderskill") +
-    annotate("point", x = data.trend.up$x, y = data.trend.up$y, shape = 24, fill = green, size = 1.5) +
-    annotate("point", x = data.trend.down$x, y = data.trend.down$y, shape = 25, fill = red, size = 1.5)
+    labs(x = "Nation", y = "Battle Rating", caption = "Author: ControlNet, Source: Thunderskill")
+
+  if (!is.null(date.compare)) {
+    p +
+      annotate("point", x = data.trend.up$x, y = data.trend.up$y, shape = 24, fill = green, size = 1.5) +
+      annotate("point", x = data.trend.down$x, y = data.trend.down$y, shape = 25, fill = red, size = 1.5)
+  } else p
 }
 
 static.heatmap.default.ground_vehicles.win_rate <- function() static.heatmap()
