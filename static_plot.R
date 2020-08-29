@@ -41,9 +41,9 @@ static.heatmap <- function(date.sample = data$date %>% unique %>% .[1],
 
   # plot
   p <- data.now %>% ggplot +
-    geom_tile(aes_string(x = "nation", y = "rb_lower_br", fill = fill), color = "black") +
+    geom_tile(aes_string(x = "nation", y = "rb_lower_br", fill = fill, battles = "rb_battles_sum"), color = "black") +
     scale_fill_gradientn(colors = colors, values = colors.pos, limits = fill.limits) +
-    scale_y_discrete(labels = data.now$rb_br) +
+    scale_y_discrete(labels = data.now$rb_br %>% unique %>% as.character) +
     scale_x_discrete(limits = nation_order) +
     ggtitle(paste("Heatmap of", fill, "for", class.sample, date.sample, sep = " ")) +
     labs(x = "Nation", y = "Battle Rating", caption = "Author: ControlNet, Source: Thunderskill")
