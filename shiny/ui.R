@@ -7,6 +7,7 @@ source("visualization/time_trend.R")
 library(shiny)
 library(plotly)
 library(DT)
+library(shinyWidgets)
 
 
 date <- read.csv(cache.all.file.path)$date %>% unique
@@ -18,7 +19,7 @@ ui <- fluidPage(
   tabsetPanel(
     tabPanel("Heatmap", sidebarLayout(
       sidebarPanel = sidebarPanel(
-        selectInput("heatmap_date", "Date:", date, selected = date[1]),
+        sliderTextInput("heatmap_date", "Date:", choices = rev(date), selected = date[1]),
         selectInput("heatmap_cls", "Class:", cls, selected = cls[1]),
         selectInput("heatmap_fill", "Measurement:", fill, selected = fill[1]),
         width = 2
