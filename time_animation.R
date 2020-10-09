@@ -90,3 +90,29 @@ animation.trend.bars <- function(nation.sample,
 
   p + transition_time(date)
 }
+
+
+animation.trend.histogram <- function(x = "rb_repair", x.limits = c(0, 30000), bins = 100, facet=TRUE) {
+  # read data
+  data <- paste0(wk.dir.path, "/", list.files(wk.dir.path)) %>%
+    .[. > paste0(wk.dir.path, "/", "wk2020-03-23")] %>%
+    lapply(FUN = function(file) {
+      read.csv(file) %>%
+        select(x, "cls") %>%
+        mutate(date = file %>%
+          as.Date(format = paste0(wk.dir.path, "/wk%Y-%m-%d.csv")))
+    }) %>%
+    Reduce(f = rbind) %>%
+    .[!is.na(.[y]),]
+
+  # plot
+  p <- ggplot(data) +
+    geom_histogram(aes_string(x = x, fill = "cls"), bins = bins, color = black, size = 0.2) +
+    xlim(x.limits) +
+    labs(y = "Counts", caption = "Author: ControlNet, Source: Thunderskill",
+         title = paste("Histogram for", x, "{frame_time}", sep = " "))
+
+  if (facet) p <- p + facet_wrap(~cls)
+
+  p + transition_time(date)
+}
