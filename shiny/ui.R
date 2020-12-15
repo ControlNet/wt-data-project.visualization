@@ -10,7 +10,7 @@ library(DT)
 library(shinyWidgets)
 
 
-date <- read.csv(cache.all.file.path)$date %>% unique
+date <- read.csv(cache.all.file.path("rb"))$date %>% unique
 cls <- c("Ground_vehicles", "Aviation")
 fill <- c("rb_win_rate", "rb_battles_sum")
 

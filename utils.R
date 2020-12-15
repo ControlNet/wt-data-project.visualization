@@ -1,8 +1,14 @@
 library(ggsci)
 
-cache.all.file.path <- "data/rb_ranks_all.csv"
-cache.1.file.path <- "data/rb_ranks_1.csv"
-cache.0.file.path <- "data/rb_ranks_0.csv"
+cache.all.file.path <- function(mode) {
+  paste0("data/", mode, "_ranks_all.csv")
+}
+cache.1.file.path <- function(mode) {
+  paste0("data/", mode, "_ranks_1.csv")
+}
+cache.0.file.path <- function(mode) {
+  paste0("data/", mode, "_ranks_0.csv")
+}
 joined.dir.path <- "data/joined"
 ts.dir.path <- "data/ts"
 wk.dir.path <- "data/wk"
