@@ -42,7 +42,7 @@ server <- function(input, output, session) {
   })
 
   output$table <- renderTable({
-    read.csv(cache.1.file.path) %>%
+    read.csv(cache.1.file.path("rb")) %>%
       filter(date == input$table_date) %>%
       filter(cls == input$table_cls) %>%
       filter(nation == input$table_nation)
