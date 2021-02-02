@@ -5,8 +5,8 @@ library(gganimate)
 require(gifski)
 source("visualization/utils.R")
 
-animation.render <- function(plot, width = 525, height = 600)
-  animate(plot, renderer = gifski_renderer(), width = width, height = height)
+animation.render <- function(plot, width = 7, height = 8, dpi = 100, fps = 10)
+  animate(plot, renderer = gifski_renderer(), width = width, height = height, fps = fps, res = dpi, units = "in")
 
 animation.trend.heatmap <- function(class.sample = "Ground_vehicles", fill = "rb_win_rate",
                                     fill.limits = c(0, 100),
