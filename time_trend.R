@@ -19,7 +19,8 @@ trend.nations <- function(mode = "rb", class.sample = "Ground_vehicles",
   data.sample %>% ggplot +
     geom_line(aes_string(x = "date", y = y, color = "nation"), size = 1.2) +
     scale_x_date(date_labels = "%Y/%m") +
-    labs(x = "Date", colors = "Nation", caption = "Author: ControlNet, Source: Thunderskill") +
+    labs(x = "Date", colors = "Nation",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill") +
     ggtitle(paste(y, "Trend for", class.sample, rb_br.sample, sep = " "))
 }
 
@@ -38,7 +39,8 @@ trend.nations.battles <- function(mode="rb", class.sample = "Ground_vehicles", y
   data.sample %>% ggplot +
     geom_area(aes_string(x = "date", y = y, fill = "nation"), color = "black") +
     scale_x_date(date_labels = "%Y/%m") +
-    labs(x = "Date", fill = "Nation", caption = "Author: ControlNet, Source: Thunderskill") +
+    labs(x = "Date", fill = "Nation",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill") +
     scale_fill_manual(values = c(red, blue, green, gray, purple, indigo, yellow, orange, brown)) +
     ggtitle(paste("Battles Trend for", class.sample, sep = " "))
 }
@@ -56,5 +58,6 @@ trend.vehicles <- function(vehicles, y = "rb_win_rate") {
     geom_line(aes_string(x = "date", y = y, color = "name")) +
     ggtitle("Trend of Vehicles") +
     scale_x_date(date_labels = "%Y/%m") +
-    labs(x = "Date", color = "Vehicle", caption = "Author: ControlNet, Source: Thunderskill")
+    labs(x = "Date", color = "Vehicle",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill")
 }

@@ -29,7 +29,8 @@ animation.trend.heatmap <- function(class.sample = "Ground_vehicles", fill = "rb
     scale_x_discrete(limits = c("USA", "Germany", "USSR", "Britain", "Japan",
                                 "France", "Italy", "China", "Sweden")) +
     ggtitle(paste("Heatmap of", fill, "for", class.sample, "{frame_time}", sep = " ")) +
-    labs(x = "Nation", y = "Battle Rating", caption = "Author: ControlNet, Source: Thunderskill") +
+    labs(x = "Nation", y = "Battle Rating",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill") +
     transition_time(date)
 }
 
@@ -58,7 +59,7 @@ animation.trend.scatter <- function(class.sample = "Ground_vehicles",
   p <- data %>% ggplot +
     geom_point(aes_string(x = x, y = y, color = "nation", size = size)) +
     ggtitle(paste("Scatter for", class.sample, "{frame_time}", sep = " ")) +
-    labs(caption = "Author: ControlNet, Source: Thunderskill")
+    labs(caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill")
   # modify some attributes
   if (x.log) p <- p + scale_x_log10()
   if (y.log) p <- p + scale_y_log10()
@@ -88,7 +89,7 @@ animation.trend.bars <- function(nation.sample,
     coord_flip(ylim = y.limits) +
     ggtitle(paste("Bar Chart for", paste(class.sample, collapse = " and "),
                   "of", nation.sample, "{frame_time}", sep = " ")) +
-    labs(caption = "Author: ControlNet, Source: Thunderskill")
+    labs(caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill")
 
   p + transition_time(date)
 }
@@ -111,7 +112,7 @@ animation.trend.histogram <- function(x = "rb_repair", x.limits = c(0, 30000), b
   p <- ggplot(data) +
     geom_histogram(aes_string(x = x, fill = "cls"), bins = bins, color = black, size = 0.2) +
     xlim(x.limits) +
-    labs(y = "Counts", caption = "Author: ControlNet, Source: Thunderskill",
+    labs(y = "Counts", caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill",
          title = paste("Histogram for", x, "{frame_time}", sep = " "))
 
   if (facet) p <- p + facet_wrap(~cls)

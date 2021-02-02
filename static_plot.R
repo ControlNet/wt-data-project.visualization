@@ -53,7 +53,8 @@ static.heatmap <- function(date.sample = data$date %>% unique %>% .[1],
       as.character) +
     scale_x_discrete(limits = nation_order) +
     ggtitle(paste("Heatmap of", fill, "for", class.sample, date.sample, sep = " ")) +
-    labs(x = "Nation", y = "Battle Rating", caption = "Author: ControlNet, Source: Thunderskill")
+    labs(x = "Nation", y = "Battle Rating",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill")
 
   if (!is.null(date.compare)) {
     p +
@@ -90,7 +91,7 @@ static.scatter <- function(date.sample, class.sample = "Ground_vehicles",
     geom_point(aes_string(x = x, y = y, color = "nation", size = size)) +
     scale_x_log10() +
     ggtitle(paste("The scatter of vehicles in", date.sample, sep = " ")) +
-    labs(caption = "Author: ControlNet, Source: Thunderskill")
+    labs(caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill")
   if (!is.null(x.limits)) p <- p + xlim(x.limits)
   if (!is.null(y.limits)) p <- p + ylim(y.limits)
   if (!is.null(colors)) p <- p + scale_color_manual(values = colors)
@@ -116,7 +117,7 @@ static.bars <- function(nation.sample,
     scale_x_discrete(labels = data$rb_br) +
     ggtitle(paste("Bar Chart for", paste(class.sample, collapse = " and "),
                   "of", nation.sample, date.sample, sep = " ")) +
-    labs(caption = "Author: ControlNet, Source: Thunderskill", x = "Battle Rating")
+    labs(caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill", x = "Battle Rating")
   p
 }
 
@@ -156,7 +157,7 @@ static.bars.modes.battles <- function(date.sample = NULL,
     ggplot +
     geom_bar(aes(fill = nation, y = value, x = variable), position = "stack", stat = "identity") +
     labs(title = paste("Stacked Bar Chart for Battles of", paste(class.sample, collapse = " and "), sep = " "),
-         caption = "Author: ControlNet, Source: Thunderskill",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill",
          x = "Mode",
          y = "Battles",
          fill = "Nation"
@@ -190,7 +191,7 @@ static.pie.battles <- function(date.sample,
     coord_polar("y", start = 0) +
     labs(title = paste("Pie Chart for", toupper(mode), "Battles of", paste(class.sample, collapse = " and "),
                        "in", date.sample, sep = " "),
-         caption = "Author: ControlNet, Source: Thunderskill",
+         caption = "Repo: ControlNet/wt-data-project.visualization, Source: Thunderskill",
          x = NULL,
          y = "Battles",
          fill = "Nation"
