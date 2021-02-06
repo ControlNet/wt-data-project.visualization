@@ -25,6 +25,7 @@ Please use code below to install 3rd-party packages.
 install.packages("<package name>")
 ```
  * dplyr
+ * reshape2
  * ggplot2
  * data.table
  * gganimate
