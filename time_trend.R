@@ -45,8 +45,13 @@ trend.nations.battles <- function(mode="rb", class.sample = "Ground_vehicles", y
     ggtitle(paste("Battles Trend for", class.sample, sep = " "))
 }
 
-trend.vehicles <- function(vehicles, y = "rb_win_rate") {
-  file.paths <- paste0(ts.dir.path, "/", list.files(ts.dir.path))
+trend.vehicles <- function(vehicles, y = "rb_win_rate", date.after = NULL) {
+  files.filter <- list.files(ts.dir.path) %>% (function(file) {
+    if (is.null(date.after)) TRUE
+    else substr(file, 3, 12) > date.after
+  })
+
+  file.paths <- paste0(ts.dir.path, "/", list.files(ts.dir.path)[files.filter])
   data <- file.paths %>% lapply(FUN = function(file) {
     read.csv(file) %>%
       select(name, y) %>%

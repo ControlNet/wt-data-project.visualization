@@ -45,7 +45,7 @@ static.heatmap <- function(date.sample = data$date %>% unique %>% .[1],
 
   # plot
   p <- data.now %>% ggplot +
-    geom_tile(aes_string(x = "nation", y = paste0(mode, "_lower_br"), fill = fill, battles = paste0(mode, "_battles_sum")), color = "black") +
+    geom_tile(aes_string(x = "nation", y = paste0(mode, "_lower_br"), fill = fill), color = "black") +
     scale_fill_gradientn(colors = colors, values = colors.pos, limits = fill.limits) +
     scale_y_discrete(labels = data.now[paste0(mode, "_br")] %>%
       unique %>%
@@ -208,5 +208,5 @@ static.pie.default.battles <- function(mode = "rb") {
   date.sample <- data$date %>% unique %>% .[1]
   # plot pie chart
   static.pie.battles(date.sample, mode = mode,
-                     colors = c(red, blue, green, gray, purple, indigo, yellow, orange, brown))
+                     colors = c(blue, orange, indigo, black, green, purple, yellow, brown, red))
 }
