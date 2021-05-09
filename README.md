@@ -19,11 +19,11 @@ wt-data-project (as working directory)
 ## Web
 A web-based visualization [repo](https://github.com/ControlNet/wt-data-project.web) is in WIP.
 
-You can check the [link](https://controlnet.github.io/wt-data-project.web).
+### You can check this in **[https://wt.controlnet.space](https://wt.controlnet.space)**.
 
 ## Requirements
-This repo is written by R 3.6.3. 
-Please [download](https://cran.r-project.org/bin/windows/base/old/3.6.3/) R interpreter to use.
+This repo is written by R 4.0.2. 
+Please [download](https://cran.r-project.org/bin/windows/base/old/4.0.2/) R interpreter to use.
 
 Please use code below to install 3rd-party packages.
 ```r
